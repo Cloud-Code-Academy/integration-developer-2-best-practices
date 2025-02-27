@@ -7,10 +7,9 @@ public class ExchangeRateWrapper {
     // TODO: Implement properties to match the JSON structure of the API response
     // Sample response:
     // {
-    //   "base": "USD",
-    //   "date": "2023-02-27",
-    //   "time_last_updated": 1677456002,
-    //   "rates": {
+    //   "base_code": "USD",
+    //   "time_last_update_unix": 1740690001,
+    //   "conversion_rates": {
     //     "EUR": 0.9488,
     //     "GBP": 0.8393,
     //     "JPY": 136.57,
@@ -19,16 +18,18 @@ public class ExchangeRateWrapper {
     // }
     
     // Add properties for base currency
-    // public String base;
-    
-    // Add property for date
-    // public String date;
+    // public String base_code;
     
     // Add property for time last updated
-    // public Long timeLastUpdated;
+    // public DateTime time_last_update_unix;
     
     // Add property for rates (using a map)
-    // public Map<String, Decimal> rates;
+    // public Map<String, Decimal> conversion_rates;
+
+    // Add property for external ID
+    // This is an ID you will generate to uniquely identify the exchange rate record
+    // This does not come from the API response
+    // public String externalId; baseCurrency + '_' + targetCurrency
     
     /**
      * @description Converts the wrapper data to a list of Exchange_Rate__c records
