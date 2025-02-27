@@ -21,7 +21,7 @@ public class ExchangeRateWrapper {
     // public String base_code;
     
     // Add property for time last updated
-    // public DateTime time_last_update_unix;
+    // public String time_last_update_unix;
     
     // Add property for rates (using a map)
     // public Map<String, Decimal> conversion_rates;
