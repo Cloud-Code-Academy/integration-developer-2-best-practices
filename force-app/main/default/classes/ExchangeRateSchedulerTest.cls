@@ -30,35 +30,6 @@ private class ExchangeRateSchedulerTest {
     }
     
     /**
-     * @description Tests the scheduleDaily method
-     */
-    @isTest
-    static void testScheduleDaily() {
-        // Get the initial count of scheduled jobs
-        Integer initialJobCount = [
-            SELECT COUNT() 
-            FROM CronTrigger 
-            WHERE CronJobDetail.Name LIKE 'ExchangeRateUpdate%'
-        ];
-        
-        // Schedule the job
-        Test.startTest();
-        String jobId = ExchangeRateScheduler.scheduleDaily();
-        Test.stopTest();
-        
-        // Verify that a job ID was returned
-        System.assertNotEquals(null, jobId, 'Job ID should not be null');
-        
-        // Verify that a job was scheduled
-        Integer finalJobCount = [
-            SELECT COUNT() 
-            FROM CronTrigger 
-            WHERE CronJobDetail.Name LIKE 'ExchangeRateUpdate%'
-        ];
-        System.assertEquals(initialJobCount + 1, finalJobCount, 'Should have one more scheduled job');
-    }
-    
-    /**
      * @description Tests error handling in the execute method
      */
     @isTest

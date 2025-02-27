@@ -1,6 +1,7 @@
 /**
  * @description Test class for the ExchangeRateService
  * This will be provided to students to test their implementation
+ * THIS TEST CLASS WILL NOT BE ABLE TO BE DEPLOYED UNTIL YOU IMPLEMENT THE WRAPPER CLASS
  */
 @isTest
 private class ExchangeRateServiceTest {
@@ -27,11 +28,11 @@ private class ExchangeRateServiceTest {
         Test.stopTest();
         
         // Verify the result
-        System.assertNotEquals(null, wrapper, 'Wrapper should not be null');
-        System.assertEquals('USD', wrapper.base, 'Base currency should be USD');
-        System.assertEquals('2023-02-27', wrapper.date, 'Date should match the mock');
-        System.assertEquals(9, wrapper.rates.size(), 'Should have 9 rates');
-        System.assertEquals(0.9488, wrapper.rates.get('EUR'), 'EUR rate should match');
+        Assert.areNotEqual(null, wrapper, 'Wrapper should not be null');
+        Assert.areEqual('USD', wrapper.base, 'Base currency should be USD');
+        Assert.areEqual('2023-02-27', wrapper.date, 'Date should match the mock');
+        Assert.areEqual(9, wrapper.rates.size(), 'Should have 9 rates');
+        Assert.areEqual(0.9488, wrapper.rates.get('EUR'), 'EUR rate should match');
     }
     
     /**
@@ -46,9 +47,9 @@ private class ExchangeRateServiceTest {
         Test.startTest();
         try {
             ExchangeRateWrapper wrapper = ExchangeRateService.getLatestRates();
-            System.assert(false, 'Should have thrown an exception');
+            Assert.fail('Should have thrown an exception');
         } catch (Exception e) {
-            System.assert(e.getMessage().contains('Error'), 'Exception message should mention error');
+            Assert.isTrue(e.getMessage().contains('Error'), 'Exception message should mention error');
         }
         Test.stopTest();
     }
@@ -77,13 +78,13 @@ private class ExchangeRateServiceTest {
         Test.stopTest();
         
         // Verify the results
-        System.assertEquals(3, rates.size(), 'Should have 3 exchange rate records');
+        Assert.areEqual(3, rates.size(), 'Should have 3 exchange rate records');
         
         // Check that all rates have the correct fields
         for (Exchange_Rate__c rate : rates) {
-            System.assertEquals('USD', rate.Base_Currency__c, 'Base currency should be USD');
-            System.assertNotEquals(null, rate.Rate__c, 'Rate should not be null');
-            System.assertNotEquals(null, rate.Last_Updated__c, 'Last updated should not be null');
+            Assert.areEqual('USD', rate.Base_Currency__c, 'Base currency should be USD');
+            Assert.areNotEqual(null, rate.Rate__c, 'Rate should not be null');
+            Assert.areNotEqual(null, rate.Last_Updated__c, 'Last updated should not be null');
         }
         
         // Query to verify that records were inserted
@@ -91,7 +92,7 @@ private class ExchangeRateServiceTest {
             SELECT Id, Base_Currency__c, Target_Currency__c, Rate__c
             FROM Exchange_Rate__c
         ];
-        System.assertEquals(3, insertedRates.size(), 'Should have 3 records in the database');
+        Assert.areEqual(3, insertedRates.size(), 'Should have 3 records in the database');
     }
     
     /**
@@ -108,13 +109,13 @@ private class ExchangeRateServiceTest {
         Test.stopTest();
         
         // Verify the results
-        System.assertEquals(9, rates.size(), 'Should have 9 exchange rate records');
+        Assert.areEqual(9, rates.size(), 'Should have 9 exchange rate records');
         
         // Query to verify that records were inserted
         List<Exchange_Rate__c> insertedRates = [
             SELECT Id, Base_Currency__c, Target_Currency__c, Rate__c
             FROM Exchange_Rate__c
         ];
-        System.assertEquals(9, insertedRates.size(), 'Should have 9 records in the database');
+        Assert.areEqual(9, insertedRates.size(), 'Should have 9 records in the database');
     }
 }
