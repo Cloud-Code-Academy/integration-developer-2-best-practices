@@ -3,7 +3,7 @@
  * This class will be provided to students
  */
 @isTest
-global class ExchangeRateMock implements HttpCalloutMock {
+public class ExchangeRateMock implements HttpCalloutMock {
     
     // Flag to simulate an error response
     private Boolean simulateError;
@@ -28,7 +28,7 @@ global class ExchangeRateMock implements HttpCalloutMock {
      * @param request The HTTP request
      * @return HttpResponse The mocked HTTP response
      */
-    global HttpResponse respond(HttpRequest request) {
+    public HttpResponse respond(HttpRequest request) {
         // Create a mock response
         HttpResponse response = new HttpResponse();
         
